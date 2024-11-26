@@ -1,0 +1,156 @@
+{% extends "headers.html" %}
+{% block content %}
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        background-image: url('https://w0.peakpx.com/wallpaper/43/30/HD-wallpaper-travel-couple-lifestyle.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main {
+        background-color: rgba(255, 255, 255, 0.5); /* Set background to transparent with some opacity */
+        border-radius: 15px;
+        padding: 40px;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1.5px solid #4a90e2;
+        padding: 10px;
+    }
+
+    .btn-primary {
+        background-color: #4a90e2;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 25px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: #357abd;
+    }
+
+    .floating-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .floating-button {
+        background-color: #4a90e2;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .element-container {
+        display: none;
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+    }
+
+    .floating-button:hover .element-container {
+        display: block;
+    }
+
+    .float-element {
+        display: block;
+        margin: 10px;
+        color: white;
+        background-color: #4a90e2;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .float-element:hover {
+        background-color: #357abd;
+    }
+</style>
+
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <h1 class="text-center mb-4">Travel Itinerary Generator</h1>
+                <form action="/" method="POST" class="form-inline">
+                    <div class="form-group">
+                        <label for="source" class="form-label">From:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="source"
+                            id="source"
+                            placeholder="Enter your boarding point"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="destination" class="form-label">To:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="destination"
+                            id="destination"
+                            placeholder="Enter your destination"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="form-label">Travel Date:</label>
+                        <input type="date" class="form-control" name="date" id="date" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="return" class="form-label">Return Date:</label>
+                        <input type="date" class="form-control" name="return" id="return" required/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <div class="text-center">
+                            <img id="loading" style="display: none;" src="{{url_for('static',filename='loading.gif')}}" alt="Loading..." />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+</html>
